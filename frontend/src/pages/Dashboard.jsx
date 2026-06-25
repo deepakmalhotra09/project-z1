@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useLeadSocket } from '../useLeadSocket';
 import { useTheme } from '../ThemeContext';
 
-const API = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const API = process.env.REACT_APP_API_URL || 'https://project-z1-qyrr.vercel.app/';
 
 const BUDGET_VALUES = {
   'Under $10k':      5000,
