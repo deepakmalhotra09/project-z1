@@ -28,7 +28,11 @@ log = logging.getLogger(__name__)
 # ─── Config ──────────────────────────────────────────────────────────────────
 HUBSPOT_TOKEN = os.getenv("HUBSPOT_ACCESS_TOKEN", "")
 DB_PATH = os.getenv("DB_PATH", "./leads.db")
-CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+CORS_ORIGINS_STR = os.getenv(
+    "CORS_ORIGINS", 
+    "http://localhost:3000,https://project-z1-iq6j.vercel.app"
+)
+CORS_ORIGINS = [origin.strip() for origin in CORS_ORIGINS_STR.split(",") if origin.strip()]
 
 BUDGET_PIPELINE_MAP = {
     "Under $10k": 5000,
