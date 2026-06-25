@@ -281,11 +281,14 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Lead Distribution Portal API", version="1.0.0", lifespan=lifespan)
 
+# Log CORS configuration for debugging
+log.info("CORS Origins configured: %s", CORS_ORIGINS)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # tighten for production
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
