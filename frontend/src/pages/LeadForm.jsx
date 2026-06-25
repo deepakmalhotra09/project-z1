@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTheme } from '../ThemeContext';
 
-const API = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const API = process.env.REACT_APP_API_URL || 'https://project-z1-qyrr.vercel.app';
 
 const BUDGETS = ['Under $10k', '$10k-$50k', 'Greater than $50k'];
 
