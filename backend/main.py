@@ -17,6 +17,7 @@ import httpx
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, EmailStr, validator
 
 load_dotenv()
@@ -342,7 +343,15 @@ async def submit_lead(payload: LeadSubmission):
     # Async HubSpot sync (fire and forget — dashboard updates via WS)
     asyncio.create_task(sync_lead_and_notify(lead))
 
-    return {"success": True, "lead_id": lead["id"], "message": "Lead received. HubSpot sync in progress."}
+    return JSONResponse(
+        status_code=201,
+        content={"success": True, "lead_id": lead["id"], "message": "Lead received. HubSpot sync in progress."},
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "*",
+        },
+    )
 
 
 async def sync_lead_and_notify(lead: dict):
