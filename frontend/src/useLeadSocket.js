@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 
-const WS_URL = process.env.REACT_APP_WS_URL || 'wss://project-z1-qyrr.vercel.app//ws';
+const WS_URL = process.env.REACT_APP_WS_URL || 'wss://project-z1-qyrr.vercel.app/ws';
 
 export function useLeadSocket({ onEvent }) {
   const ws = useRef(null);
